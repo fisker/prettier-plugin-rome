@@ -201,3 +201,62 @@ snapshot-24:
     '  );\n' +
     '}\n'
 }
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-25:
+{
+  options: undefined,
+  text: 'interface User {\n' +
+    '  id: number\n' +
+    '      firstName: string\n' +
+    '  lastName: string\n' +
+    '  role: string\n' +
+    '}\n' +
+    '\n' +
+    'function updateUser(id: number, update: Partial<User>) {\n' +
+    '  const user = getUser(id)\n' +
+    '      const newUser = { ...user, ...update }\n' +
+    '  saveUser(id, newUser)\n' +
+    '}',
+  formatted: 'interface User {\n' +
+    '  id: number;\n' +
+    '  firstName: string;\n' +
+    '  lastName: string;\n' +
+    '  role: string;\n' +
+    '}\n' +
+    '\n' +
+    'function updateUser(id: number, update: Partial<User>) {\n' +
+    '  const user = getUser(id);\n' +
+    '  const newUser = { ...user, ...update };\n' +
+    '  saveUser(id, newUser);\n' +
+    '}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-26:
+{
+  options: undefined,
+  text: 'import * as React from "react";\n' +
+    '\n' +
+    'interface UserThumbnailProps {img: string;\n' +
+    '  alt: string;\n' +
+    '      url: string;\n' +
+    '}\n' +
+    '\n' +
+    'export const UserThumbnail =\n' +
+    '(props: UserThumbnailProps) =>\n' +
+    '  <a href={props.url}>\n' +
+    '    <img src={props.img} alt={props.alt} />\n' +
+    '  </a>',
+  formatted: 'import * as React from "react";\n' +
+    '\n' +
+    'interface UserThumbnailProps {\n' +
+    '  img: string;\n' +
+    '  alt: string;\n' +
+    '  url: string;\n' +
+    '}\n' +
+    '\n' +
+    'export const UserThumbnail = (props: UserThumbnailProps) => (\n' +
+    '  <a href={props.url}>\n' +
+    '    <img src={props.img} alt={props.alt} />\n' +
+    '  </a>\n' +
+    ');\n'
+}

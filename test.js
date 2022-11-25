@@ -96,3 +96,35 @@ test('format', async () => {
   //   [undefined, true, false].map((semi) => snapshot('[].map(foo)', {semi})),
   // )
 })
+
+test('languages', async () => {
+  await snapshot(outdent`
+    interface User {
+      id: number
+          firstName: string
+      lastName: string
+      role: string
+    }
+
+    function updateUser(id: number, update: Partial<User>) {
+      const user = getUser(id)
+          const newUser = { ...user, ...update }
+      saveUser(id, newUser)
+    }
+  `)
+
+  await snapshot(outdent`
+    import * as React from "react";
+
+    interface UserThumbnailProps {img: string;
+      alt: string;
+          url: string;
+    }
+
+    export const UserThumbnail =
+    (props: UserThumbnailProps) =>
+      <a href={props.url}>
+        <img src={props.img} alt={props.alt} />
+      </a>
+  `)
+})

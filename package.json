@@ -1,6 +1,7 @@
 {
   "name": "prettier-plugin-rome",
   "version": "0.0.0",
+  "description": "Prettier plugin runs rome.",
   "homepage": "https://github.com/fisker/prettier-plugin-rome#readme",
   "bugs": {
     "url": "https://github.com/fisker/prettier-plugin-rome/issues"
@@ -18,8 +19,6 @@
   "exports": "./index.js",
   "main": "index.js",
   "scripts": {
-    "clean": "run-p \"clean:*\"",
-    "clean:dist": "del-cli dist",
     "dist": "run-p \"dist:*\"",
     "dist:npm": "np --yolo --no-yarn",
     "format": "run-p \"format:*\"",
@@ -32,6 +31,8 @@
     "lint:markdown": "markdownlint-cli2",
     "lint:package-json": "yarn run format:package-json --check",
     "lint:prettier": "prettier . --check",
+    "test": "node --test",
+    "release": "run-s lint test dist",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -43,7 +44,6 @@
     "@fisker/lint-staged-config": "3.1.6",
     "@fisker/markdownlint-cli2-config": "0.0.3",
     "@fisker/prettier-config": "5.0.7",
-    "del-cli": "5.0.0",
     "eslint": "8.28.0",
     "husky": "8.0.2",
     "lint-staged": "13.0.3",
