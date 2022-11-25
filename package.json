@@ -39,7 +39,7 @@
     "lint:prettier": "prettier . --check",
     "test": "node --test",
     "test-coverage": "c8 node --test --enable-source-maps",
-    "release": "run-s lint test dist",
+    "release": "run-s lint dist",
     "prepare": "husky install"
   },
   "c8": {
