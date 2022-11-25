@@ -38,9 +38,22 @@
     "lint:package-json": "yarn run format:package-json --check",
     "lint:prettier": "prettier . --check",
     "test": "node --test",
-    "test-coverage": "c8 yarn test",
+    "test-coverage": "c8 node --test --enable-source-maps",
     "release": "run-s lint test dist",
     "prepare": "husky install"
+  },
+  "c8": {
+    "all": true,
+    "include": [
+      "index.js",
+      "languages.js",
+      "rome-format.js",
+      "get-rome-configuration.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ]
   },
   "dependencies": {
     "@rometools/js-api": "0.1.3",
@@ -65,18 +78,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "c8": {
-    "reporter": [
-      "lcov",
-      "text"
-    ],
-    "all": true,
-    "include": [
-      "index.js",
-      "languages.js",
-      "rome-format.js",
-      "get-rome-configuration.js"
-    ]
   }
 }
