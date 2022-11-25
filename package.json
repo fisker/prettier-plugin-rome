@@ -18,6 +18,12 @@
   "type": "module",
   "exports": "./index.js",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "languages.js",
+    "rome-format.js",
+    "get-rome-configuration.js"
+  ],
   "scripts": {
     "dist": "run-p \"dist:*\"",
     "dist:npm": "np --yolo --no-yarn",
@@ -32,6 +38,7 @@
     "lint:package-json": "yarn run format:package-json --check",
     "lint:prettier": "prettier . --check",
     "test": "node --test",
+    "test-coverage": "c8 yarn test",
     "release": "run-s lint test dist",
     "prepare": "husky install"
   },
@@ -44,6 +51,7 @@
     "@fisker/lint-staged-config": "3.1.6",
     "@fisker/markdownlint-cli2-config": "0.0.3",
     "@fisker/prettier-config": "5.0.7",
+    "c8": "7.12.0",
     "eslint": "8.28.0",
     "husky": "8.0.2",
     "lint-staged": "13.0.3",
@@ -57,5 +65,18 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "c8": {
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "all": true,
+    "include": [
+      "index.js",
+      "languages.js",
+      "rome-format.js",
+      "get-rome-configuration.js"
+    ]
   }
 }

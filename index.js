@@ -1,16 +1,17 @@
 import format from './rome-format.js'
 import languages from './languages.js'
+import getRomeConfiguration from './get-rome-configuration.js'
 
-const parse = async (original, options) => ({
-  type: 'root',
-  text: await format(original, options),
-  range: [0, original.length],
+const parserName = 'rome'
+const astFormat = parserName
+
+const parse = async (text, options) => ({
+  text: await format(text, getRomeConfiguration(options), options.filepath),
+  range: [0, text.length],
 })
 
 const print = (path) => path.node.text
 
-const parserName = 'rome'
-const astFormat = parserName
 export default {
   languages: languages.map((language) => ({
     ...language,
