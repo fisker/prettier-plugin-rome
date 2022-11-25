@@ -1,0 +1,203 @@
+snapshot-1:
+{ options: undefined, text: 'foo()', formatted: 'foo();\n' }
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-2:
+{
+  options: { printWidth: undefined },
+  text: 'foo.bar(1, 2)',
+  formatted: 'foo.bar(1, 2);\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-3:
+{
+  options: { printWidth: 5 },
+  text: 'foo.bar(1, 2)',
+  formatted: 'foo.bar(\n  1,\n  2,\n);\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-4:
+{
+  options: { useTabs: undefined },
+  text: 'function foo() {\n  bar()\n}',
+  formatted: 'function foo() {\n  bar();\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-5:
+{
+  options: { useTabs: true },
+  text: 'function foo() {\n  bar()\n}',
+  formatted: 'function foo() {\n\tbar();\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-6:
+{
+  options: { useTabs: false },
+  text: 'function foo() {\n  bar()\n}',
+  formatted: 'function foo() {\n  bar();\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-7:
+{
+  options: { tabWidth: undefined },
+  text: 'function foo() {\n  bar()\n}',
+  formatted: 'function foo() {\n  bar();\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-8:
+{
+  options: { tabWidth: 2 },
+  text: 'function foo() {\n  bar()\n}',
+  formatted: 'function foo() {\n  bar();\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-9:
+{
+  options: { tabWidth: 4 },
+  text: 'function foo() {\n  bar()\n}',
+  formatted: 'function foo() {\n    bar();\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-10:
+{
+  options: { singleQuote: undefined },
+  text: 'foo("bar")',
+  formatted: 'foo("bar");\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-11:
+{
+  options: { singleQuote: true },
+  text: 'foo("bar")',
+  formatted: "foo('bar');\n"
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-12:
+{
+  options: { singleQuote: false },
+  text: 'foo("bar")',
+  formatted: 'foo("bar");\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-13:
+{
+  options: { quoteProps: undefined },
+  text: 'foo = {0: 0, "a-b": "a-b", c: c, "d": d}',
+  formatted: 'foo = { 0: 0, "a-b": "a-b", c: c, d: d };\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-14:
+{
+  options: { quoteProps: 'as-needed' },
+  text: 'foo = {0: 0, "a-b": "a-b", c: c, "d": d}',
+  formatted: 'foo = { 0: 0, "a-b": "a-b", c: c, d: d };\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-15:
+{
+  options: { quoteProps: 'consistent' },
+  text: 'foo = {0: 0, "a-b": "a-b", c: c, "d": d}',
+  formatted: 'foo = { 0: 0, "a-b": "a-b", c: c, d: d };\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-16:
+{
+  options: { quoteProps: 'preserve' },
+  text: 'foo = {0: 0, "a-b": "a-b", c: c, "d": d}',
+  formatted: 'foo = { 0: 0, "a-b": "a-b", c: c, "d": d };\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-17:
+{
+  options: { trailingComma: undefined, printWidth: undefined },
+  text: 'function foo(a, b) {\n  console.log({a,b})\n}',
+  formatted: 'function foo(a, b) {\n  console.log({ a, b });\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-18:
+{
+  options: { trailingComma: undefined, printWidth: 10 },
+  text: 'function foo(a, b) {\n  console.log({a,b})\n}',
+  formatted: 'function foo(\n' +
+    '  a,\n' +
+    '  b,\n' +
+    ') {\n' +
+    '  console.log(\n' +
+    '    {\n' +
+    '      a,\n' +
+    '      b,\n' +
+    '    },\n' +
+    '  );\n' +
+    '}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-19:
+{
+  options: { trailingComma: 'all', printWidth: undefined },
+  text: 'function foo(a, b) {\n  console.log({a,b})\n}',
+  formatted: 'function foo(a, b) {\n  console.log({ a, b });\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-20:
+{
+  options: { trailingComma: 'all', printWidth: 10 },
+  text: 'function foo(a, b) {\n  console.log({a,b})\n}',
+  formatted: 'function foo(\n' +
+    '  a,\n' +
+    '  b,\n' +
+    ') {\n' +
+    '  console.log(\n' +
+    '    {\n' +
+    '      a,\n' +
+    '      b,\n' +
+    '    },\n' +
+    '  );\n' +
+    '}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-21:
+{
+  options: { trailingComma: 'es5', printWidth: undefined },
+  text: 'function foo(a, b) {\n  console.log({a,b})\n}',
+  formatted: 'function foo(a, b) {\n  console.log({ a, b });\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-22:
+{
+  options: { trailingComma: 'es5', printWidth: 10 },
+  text: 'function foo(a, b) {\n  console.log({a,b})\n}',
+  formatted: 'function foo(\n' +
+    '  a,\n' +
+    '  b\n' +
+    ') {\n' +
+    '  console.log(\n' +
+    '    {\n' +
+    '      a,\n' +
+    '      b,\n' +
+    '    }\n' +
+    '  );\n' +
+    '}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-23:
+{
+  options: { trailingComma: 'none', printWidth: undefined },
+  text: 'function foo(a, b) {\n  console.log({a,b})\n}',
+  formatted: 'function foo(a, b) {\n  console.log({ a, b });\n}\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-24:
+{
+  options: { trailingComma: 'none', printWidth: 10 },
+  text: 'function foo(a, b) {\n  console.log({a,b})\n}',
+  formatted: 'function foo(\n' +
+    '  a,\n' +
+    '  b\n' +
+    ') {\n' +
+    '  console.log(\n' +
+    '    {\n' +
+    '      a,\n' +
+    '      b\n' +
+    '    }\n' +
+    '  );\n' +
+    '}\n'
+}
