@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "build": "run-p \"build:*\"",
-    "build:js": "esbuild index.js --format=cjs --outfile=index.cjs --bundle --external:@rometools/js-api --external:@rometools/wasm-nodejs",
+    "build:js": "esbuild index.js --format=cjs --outfile=index.cjs --bundle --external:@rometools/js-api --external:@rometools/wasm-nodejs --platform=node",
     "dist": "run-p \"dist:*\"",
     "dist:npm": "np --yolo --no-yarn",
     "format": "run-p \"format:*\"",
