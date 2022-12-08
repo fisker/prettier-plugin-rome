@@ -26,7 +26,7 @@ jobs:
         # exclude:
         #   - os: "macos-latest"
         #     node_version: "12"
-    name: Node.js ${{ matrix.node_version }} on ${{ matrix.os }}
+    name: Node.js ${{ matrix.node_version }} on ${{ matrix.os }} with Prettier@${{ matrix.prettier }}
     runs-on: ${{ matrix.os }}
     env:
       YARN_ENABLE_IMMUTABLE_INSTALLS: false
@@ -43,7 +43,7 @@ jobs:
         run: yarn
 
       - name: Install Prettier
-        if: matrix.prettier !== ""
+        if: matrix.prettier != ''
         run: yarn up prettier@${{ matrix.prettier }}
 
       - name: Run Test
