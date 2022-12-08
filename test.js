@@ -91,10 +91,10 @@ test('format', async () => {
     ),
   )
 
-  // // semi
-  // await Promise.all(
-  //   [undefined, true, false].map((semi) => snapshot('[].map(foo)', {semi})),
-  // )
+  // semi
+  await Promise.all(
+    [undefined, true, false].map((semi) => snapshot('[].map(foo)', {semi})),
+  )
 })
 
 test('languages', async () => {

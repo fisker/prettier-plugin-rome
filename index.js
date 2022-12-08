@@ -1,16 +1,16 @@
-import format from './rome-format.js';
-import languages from './languages.js';
-import getRomeConfiguration from './get-rome-configuration.js';
+import format from './rome-format.js'
+import languages from './languages.js'
+import getRomeConfiguration from './get-rome-configuration.js'
 
-const parserName = 'rome';
-const astFormat = parserName;
+const parserName = 'rome'
+const astFormat = parserName
 
 const parse = async (text, options) => ({
   text: await format(text, getRomeConfiguration(options), options.filepath),
   range: [0, text.length],
-});
+})
 
-const print = (path) => path.node.text;
+const print = (path) => path.node.text
 
 export default {
   languages: languages.map((language) => ({
@@ -31,4 +31,4 @@ export default {
       willPrintOwnComments: () => true,
     },
   },
-};
+}

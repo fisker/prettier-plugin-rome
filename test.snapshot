@@ -204,6 +204,27 @@ snapshot-24:
 #*#*#*#*#*#*#*#*#*#*#*#
 snapshot-25:
 {
+  options: { semi: undefined },
+  text: '[].map(foo)',
+  formatted: '[].map(foo);\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-26:
+{
+  options: { semi: true },
+  text: '[].map(foo)',
+  formatted: '[].map(foo);\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-27:
+{
+  options: { semi: false },
+  text: '[].map(foo)',
+  formatted: ';[].map(foo)\n'
+}
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-28:
+{
   options: undefined,
   text: 'interface User {\n' +
     '  id: number\n' +
@@ -231,7 +252,7 @@ snapshot-25:
     '}\n'
 }
 #*#*#*#*#*#*#*#*#*#*#*#
-snapshot-26:
+snapshot-29:
 {
   options: undefined,
   text: 'import * as React from "react";\n' +

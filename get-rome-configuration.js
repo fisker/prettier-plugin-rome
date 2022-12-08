@@ -16,7 +16,7 @@ function getRomeConfiguration(prettierOptions = {}) {
             consistent: 'asNeeded',
           }[prettierOptions.quoteProps] ?? prettierOptions.quoteProps,
         trailingComma: prettierOptions.trailingComma,
-        // semicolons: prettierOptions.semi ? 'always' : 'asNeeded',
+        semicolons: prettierOptions.semi ? 'always' : 'asNeeded',
       },
     },
   }
