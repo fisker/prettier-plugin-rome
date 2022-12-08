@@ -3,9 +3,9 @@ function getRomeConfiguration(prettierOptions = {}) {
     formatter: {
       enabled: true,
       formatWithErrors: true,
-      lineWidth: prettierOptions.printWidth,
       indentStyle: prettierOptions.useTabs ? 'tab' : 'space',
       indentSize: prettierOptions.tabWidth,
+      lineWidth: prettierOptions.printWidth,
     },
     javascript: {
       formatter: {
