@@ -5,8 +5,8 @@ import getRomeConfiguration from './get-rome-configuration.js'
 const parserName = 'rome'
 const astFormat = parserName
 
-const parse = async (text, options) => ({
-  text: await format(text, getRomeConfiguration(options), options.filepath),
+const parse = (text, options) => ({
+  text: format(text, getRomeConfiguration(options), options.filepath),
   range: [0, text.length],
 })
 

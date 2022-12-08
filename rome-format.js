@@ -1,11 +1,19 @@
-import {Rome, BackendKind} from '@rometools/js-api'
+import {Rome} from '@rometools/js-api'
+import romeToolsWasmModule from '@rometools/wasm-nodejs'
 
-async function format(text, configuration, file = 'file.tsx') {
-  const rome = await Rome.create({backendKind: BackendKind.NODE})
+let workspace
+function format(text, configuration, file = 'file.tsx') {
+  // Based on `Rome.create`
+  if (!workspace) {
+    romeToolsWasmModule.main()
+    workspace = new romeToolsWasmModule.Workspace()
+  }
 
-  await rome.applyConfiguration(configuration)
+  const rome = new Rome(romeToolsWasmModule, workspace)
 
-  const {content: formatted} = await rome.formatContent(text, {filePath: file})
+  rome.applyConfiguration(configuration)
+
+  const {content: formatted} = rome.formatContent(text, {filePath: file})
 
   return formatted
 }
