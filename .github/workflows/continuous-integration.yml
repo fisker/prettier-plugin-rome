@@ -20,6 +20,9 @@ jobs:
         node_version:
           - "19"
           - "18"
+        prettier:
+          - ""
+          - "3.0.0-alpha.4"
         # exclude:
         #   - os: "macos-latest"
         #     node_version: "12"
@@ -38,6 +41,10 @@ jobs:
 
       - name: Install Dependencies
         run: yarn
+
+      - name: Install Prettier
+        if: matrix.prettier !== ""
+        run: yarn up prettier@${{ matrix.prettier }}
 
       - name: Run Test
         run: yarn test-coverage
