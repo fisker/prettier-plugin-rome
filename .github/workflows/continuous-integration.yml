@@ -47,7 +47,7 @@ jobs:
         run: yarn up prettier@${{ matrix.prettier }}
 
       - name: Run Test
-        run: yarn test-coverage
+        run: yarn test
 
       - uses: codecov/codecov-action@v3
         with:
