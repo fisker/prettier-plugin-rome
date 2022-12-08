@@ -1,15 +1,14 @@
 import {Rome} from '@rometools/js-api'
 import romeToolsWasmModule from '@rometools/wasm-nodejs'
 
-let workspace
+let rome
 function format(text, configuration, file = 'file.tsx') {
   // Based on `Rome.create`
-  if (!workspace) {
+  if (!rome) {
     romeToolsWasmModule.main()
-    workspace = new romeToolsWasmModule.Workspace()
+    const workspace = new romeToolsWasmModule.Workspace()
+    rome = new Rome(romeToolsWasmModule, workspace)
   }
-
-  const rome = new Rome(romeToolsWasmModule, workspace)
 
   rome.applyConfiguration(configuration)
 
