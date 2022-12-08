@@ -100,3 +100,4 @@ typings/
 
 # project ignore files
 dist/
+/index.cjs

@@ -4,9 +4,10 @@ import * as prettier from 'prettier'
 import outdent from 'outdent'
 import prettierPluginRome from './index.js'
 
-function format(text, options) {
+function format(text, options = {}) {
   return prettier.format(text, {
     ...options,
+    trailingComma: options.trailingComma ?? 'all',
     parser: 'rome',
     plugins: [prettierPluginRome],
   })

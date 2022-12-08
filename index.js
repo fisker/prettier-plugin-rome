@@ -5,12 +5,12 @@ import getRomeConfiguration from './get-rome-configuration.js'
 const parserName = 'rome'
 const astFormat = parserName
 
-const parse = (text, options) => ({
+const parse = (text, _, options) => ({
   text: format(text, getRomeConfiguration(options), options.filepath),
   range: [0, text.length],
 })
 
-const print = (path) => path.node.text
+const print = (path) => path.getNode().text
 
 export default {
   languages: languages.map((language) => ({
