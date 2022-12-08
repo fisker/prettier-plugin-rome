@@ -5,5 +5,5 @@
 ## Installation
 
 ```bash
-yarn add prettier prettier-plugin-rome
+yarn add prettier prettier-plugin-rome --dev
 ```
