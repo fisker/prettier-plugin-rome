@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-rome",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Prettier plugin runs rome.",
   "homepage": "https://github.com/fisker/prettier-plugin-rome#readme",
   "bugs": {
