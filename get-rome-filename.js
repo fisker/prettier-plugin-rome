@@ -28,7 +28,7 @@ function getRomeFilename(filename) {
     return filename
   }
 
-  const basename = path.basename(lowercasedFilename)
+  const basename = path.basename(filename)
   const matchedExtension = languages.find(
     (language) =>
       language.filenames?.includes(basename) ||

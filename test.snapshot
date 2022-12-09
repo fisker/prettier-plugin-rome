@@ -294,3 +294,12 @@ snapshot-30 (error):
   loc: { start: { line: 2, column: 3 }, end: { line: 2, column: 6 } },
   codeFrame: '  1 | function a() {\n> 2 |   >>>\n    |   ^^^\n  3 | }'
 }
+#*#*#*#*#*#*#*#*#*#*#*#
+snapshot-31 (error):
+{
+  options: { filepath: 'unknown.unknown' },
+  text: '_',
+  message: 'Rome could not determine the language for the file extension "unknown"',
+  loc: undefined,
+  codeFrame: undefined
+}
