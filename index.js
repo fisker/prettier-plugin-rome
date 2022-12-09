@@ -1,5 +1,5 @@
 import format from './rome-format.js'
-import romeLanguages from './languages.js'
+import languagesWithoutParser from './languages.js'
 import getRomeConfiguration from './get-rome-configuration.js'
 
 const parserName = 'rome'
@@ -12,7 +12,7 @@ const parse = (text, _, options) => ({
 
 const print = (path) => path.getNode().text
 
-export const languages = romeLanguages.map((language) => ({
+export const languages = languagesWithoutParser.map((language) => ({
   ...language,
   parsers: [parserName],
 }))

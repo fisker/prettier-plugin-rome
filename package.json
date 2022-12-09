@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "build": "run-p \"build:*\"",
-    "build:js": "esbuild index.js --format=cjs --outfile=index.cjs --bundle --external:@rometools/js-api --external:@rometools/wasm-nodejs --platform=node",
+    "build:js": "esbuild index.js --platform=node --format=cjs --outfile=index.cjs --bundle --external:@rometools/js-api --external:@rometools/wasm-nodejs --external:lines-and-columns",
     "dist": "run-p \"dist:*\"",
     "dist:npm": "np --yolo --no-yarn",
     "format": "run-p \"format:*\"",
@@ -67,7 +67,8 @@
   },
   "dependencies": {
     "@rometools/js-api": "0.2.0",
-    "@rometools/wasm-nodejs": "11.0.0"
+    "@rometools/wasm-nodejs": "11.0.0",
+    "lines-and-columns": "2.0.3"
   },
   "devDependencies": {
     "@fisker/eslint-config": "10.2.5",
