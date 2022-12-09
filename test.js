@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import * as prettier from 'prettier'
 import outdent from 'outdent'
+import languages from './languages.js'
 import prettierPluginRome from './index.js'
 
 function format(text, options = {}) {
@@ -163,4 +164,20 @@ test('invalid', async () => {
     }
   `)
   await snapshotError('_', {filepath: 'unknown.unknown'})
+})
+
+test('file names', () => {
+  const filenames = languages.flatMap((language) => [
+    ...(language.filenames ?? []),
+    ...language.extensions.map((extension) => `source${extension}`),
+  ])
+
+  for (const filepath of filenames) {
+    test(filepath, async () => {
+      assert.strictEqual(
+        await format('foo()', {filepath: `/${filepath}`}),
+        'foo();\n',
+      )
+    })
+  }
 })
