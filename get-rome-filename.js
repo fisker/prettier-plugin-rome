@@ -28,11 +28,13 @@ function getRomeFilename(filename) {
     return filename
   }
 
-  const basename = path.basename(filename)
+  const basename = path.basename(lowercasedFilename)
+
+  // https://github.com/prettier/prettier/blob/28d097bbf52377af5a87f37af1b2bc9d30b5e5ce/src/main/options.js#L128
   const matchedExtension = languages.find(
     (language) =>
-      language.filenames?.includes(basename) ||
-      language.extensions.includes(extension),
+      language.extensions.includes(extension) ||
+      language.filenames?.some((name) => name.toLowerCase() === basename),
   )?.extensions[0]
 
   return matchedExtension ? `${filename}${matchedExtension}` : filename
