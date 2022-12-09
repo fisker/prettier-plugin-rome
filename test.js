@@ -25,6 +25,32 @@ async function snapshot(text, options) {
   )
 }
 
+async function snapshotError(text, options) {
+  let error
+  try {
+    await format(text, options)
+  } catch (formatError) {
+    error = formatError
+  }
+
+  if (!error) {
+    throw new Error('error expected')
+  }
+
+  const {message, loc, codeFrame} = error
+
+  return assert.snapshot(
+    {
+      options,
+      text,
+      message,
+      loc,
+      codeFrame,
+    },
+    `snapshot-${(snapshotCount += 1)} (error)`,
+  )
+}
+
 test('format', async () => {
   await snapshot('foo()')
 
@@ -128,4 +154,13 @@ test('languages', async () => {
         <img src={props.img} alt={props.alt} />
       </a>
   `)
+})
+
+test('invalid', async () => {
+  await snapshotError(outdent`
+    function a() {
+      >>>
+    }
+  `)
+  await snapshotError('_', {filepath: 'unknown.unknown'})
 })
