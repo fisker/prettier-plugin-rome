@@ -1,12 +1,17 @@
 import format from './rome-format.js'
 import languagesWithoutParser from './languages.js'
 import getRomeConfiguration from './get-rome-configuration.js'
+import getRomeFilename from './get-rome-filename.js'
 
 const parserName = 'rome'
 const astFormat = parserName
 
 const parse = (text, _, options) => ({
-  text: format(text, getRomeConfiguration(options), options.filepath),
+  text: format(
+    text,
+    getRomeConfiguration(options),
+    getRomeFilename(options.filepath),
+  ),
   range: [0, text.length],
 })
 

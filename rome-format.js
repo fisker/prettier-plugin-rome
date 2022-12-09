@@ -25,7 +25,7 @@ function throwDiagnosticsError(text, diagnostics) {
 }
 
 let rome
-function format(text, configuration, file = 'file.tsx') {
+function format(text, configuration, file) {
   // Based on `Rome.create`
   if (!rome) {
     romeToolsWasmModule.main()
@@ -36,7 +36,6 @@ function format(text, configuration, file = 'file.tsx') {
   rome.applyConfiguration(configuration)
 
   let result
-
   try {
     result = rome.formatContent(text, {filePath: file})
   } catch (error) {
