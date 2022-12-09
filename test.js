@@ -163,7 +163,7 @@ test('invalid', async () => {
       >>>
     }
   `)
-  await snapshotError('_', {filepath: 'unknown.unknown'})
+  await snapshotError('1++', {filepath: 'unknown.unknown'})
 })
 
 test('file names', () => {

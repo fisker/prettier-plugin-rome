@@ -25,7 +25,7 @@ function getRomeFilename(filename) {
   const extension = path.extname(lowercasedFilename)
 
   if (supportedExtensions.has(extension)) {
-    return filename
+    return `source${extension}`
   }
 
   const basename = path.basename(lowercasedFilename)
@@ -37,7 +37,7 @@ function getRomeFilename(filename) {
       language.filenames?.some((name) => name.toLowerCase() === basename),
   )?.extensions[0]
 
-  return matchedExtension ? `${filename}${matchedExtension}` : filename
+  return matchedExtension ? `source${matchedExtension}` : DEFAULT_FILE_NAME
 }
 
 export default getRomeFilename

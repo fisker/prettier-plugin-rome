@@ -298,8 +298,8 @@ snapshot-30 (error):
 snapshot-31 (error):
 {
   options: { filepath: 'unknown.unknown' },
-  text: '_',
-  message: 'Rome could not determine the language for the file extension "unknown"',
-  loc: undefined,
-  codeFrame: undefined
+  text: '1++',
+  message: 'Invalid assignment to `1` (1:1)\n> 1 | 1++\n    | ^',
+  loc: { start: { line: 1, column: 1 }, end: { line: 1, column: 2 } },
+  codeFrame: '> 1 | 1++\n    | ^'
 }
