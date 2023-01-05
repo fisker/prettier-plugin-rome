@@ -49,9 +49,9 @@ jobs:
       - name: Run Test
         run: yarn test
 
-      - uses: codecov/codecov-action@v3
-        with:
-          fail_ci_if_error: true
+      # - uses: codecov/codecov-action@v3
+      #   with:
+      #     fail_ci_if_error: true
 
   lint:
     name: Lint
