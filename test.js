@@ -1,5 +1,4 @@
-import assert from 'node:assert/strict'
-import test from 'node:test'
+import test from 'ava'
 import * as prettier from 'prettier'
 import outdent from 'outdent'
 import languages from './languages.js'
@@ -15,8 +14,8 @@ function format(text, options = {}) {
 }
 
 let snapshotCount = 0
-async function snapshot(text, options) {
-  return assert.snapshot(
+async function snapshot(t, text, options) {
+  return t.snapshot(
     {
       options,
       text,
@@ -26,7 +25,7 @@ async function snapshot(text, options) {
   )
 }
 
-async function snapshotError(text, options) {
+async function snapshotError(t, text, options) {
   let error
   try {
     await format(text, options)
@@ -40,7 +39,7 @@ async function snapshotError(text, options) {
 
   const {message, loc, codeFrame} = error
 
-  return assert.snapshot(
+  return t.snapshot(
     {
       options,
       text,
@@ -52,18 +51,21 @@ async function snapshotError(text, options) {
   )
 }
 
-test('format', async () => {
-  await snapshot('foo()')
+test('format', async (t) => {
+  await snapshot(t, 'foo()')
 
   // printWidth
   await Promise.all(
-    [undefined, 5].map((printWidth) => snapshot('foo.bar(1, 2)', {printWidth})),
+    [undefined, 5].map((printWidth) =>
+      snapshot(t, 'foo.bar(1, 2)', {printWidth}),
+    ),
   )
 
   // useTabs
   await Promise.all(
     [undefined, true, false].map((useTabs) =>
       snapshot(
+        t,
         outdent`
           function foo() {
             bar()
@@ -78,6 +80,7 @@ test('format', async () => {
   await Promise.all(
     [undefined, 2, 4].map((tabWidth) =>
       snapshot(
+        t,
         outdent`
           function foo() {
             bar()
@@ -91,7 +94,7 @@ test('format', async () => {
   // singleQuote
   await Promise.all(
     [undefined, true, false].map((singleQuote) =>
-      snapshot('foo("bar")', {singleQuote}),
+      snapshot(t, 'foo("bar")', {singleQuote}),
     ),
   )
 
@@ -99,7 +102,7 @@ test('format', async () => {
   await Promise.all(
     // eslint-disable-next-line unicorn/prevent-abbreviations
     [undefined, 'as-needed', 'consistent', 'preserve'].map((quoteProps) =>
-      snapshot('foo = {0: 0, "a-b": "a-b", c: c, "d": d}', {quoteProps}),
+      snapshot(t, 'foo = {0: 0, "a-b": "a-b", c: c, "d": d}', {quoteProps}),
     ),
   )
 
@@ -108,6 +111,7 @@ test('format', async () => {
     [undefined, 'all', 'es5', 'none'].flatMap((trailingComma) =>
       [undefined, 10].map((printWidth) =>
         snapshot(
+          t,
           outdent`
             function foo(a, b) {
               console.log({a,b})
@@ -121,63 +125,72 @@ test('format', async () => {
 
   // semi
   await Promise.all(
-    [undefined, true, false].map((semi) => snapshot('[].map(foo)', {semi})),
+    [undefined, true, false].map((semi) => snapshot(t, '[].map(foo)', {semi})),
   )
 })
 
-test('languages', async () => {
-  await snapshot(outdent`
-    interface User {
-      id: number
-          firstName: string
-      lastName: string
-      role: string
-    }
+test('languages', async (t) => {
+  await snapshot(
+    t,
+    outdent`
+      interface User {
+        id: number
+            firstName: string
+        lastName: string
+        role: string
+      }
 
-    function updateUser(id: number, update: Partial<User>) {
-      const user = getUser(id)
-          const newUser = { ...user, ...update }
-      saveUser(id, newUser)
-    }
-  `)
+      function updateUser(id: number, update: Partial<User>) {
+        const user = getUser(id)
+            const newUser = { ...user, ...update }
+        saveUser(id, newUser)
+      }
+    `,
+  )
 
-  await snapshot(outdent`
-    import * as React from "react";
+  await snapshot(
+    t,
+    outdent`
+      import * as React from "react";
 
-    interface UserThumbnailProps {img: string;
-      alt: string;
-          url: string;
-    }
+      interface UserThumbnailProps {img: string;
+        alt: string;
+            url: string;
+      }
 
-    export const UserThumbnail =
-    (props: UserThumbnailProps) =>
-      <a href={props.url}>
-        <img src={props.img} alt={props.alt} />
-      </a>
-  `)
+      export const UserThumbnail =
+      (props: UserThumbnailProps) =>
+        <a href={props.url}>
+          <img src={props.img} alt={props.alt} />
+        </a>
+    `,
+  )
 })
 
-test('invalid', async () => {
-  await snapshotError(outdent`
-    function a() {
-      >>>
-    }
-  `)
-  await snapshotError('1++', {filepath: 'unknown.unknown'})
+test('invalid', async (t) => {
+  await snapshotError(
+    t,
+    outdent`
+      function a() {
+        >>>
+      }
+    `,
+  )
+  await snapshotError(t, '1++', {filepath: 'unknown.unknown'})
 })
 
-test('file names', () => {
+test('file names', async (t) => {
   const filenames = languages.flatMap((language) => [
     ...(language.filenames ?? []),
     ...language.extensions.map((extension) => `source${extension}`),
   ])
 
   for (const filepath of filenames) {
-    test(filepath, async () => {
-      assert.strictEqual(
-        await format('foo()', {filepath: `/${filepath}`}),
-        'foo();\n',
-      )
-    })
+    t.is(
+      // eslint-disable-next-line no-await-in-loop
+      await format('foo()', {filepath: `/${filepath}`}),
+      'foo();\n',
+      filepath,
+    )
   }
 })
