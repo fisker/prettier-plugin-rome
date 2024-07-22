@@ -68,7 +68,7 @@
   "dependencies": {
     "@rometools/js-api": "0.2.0",
     "@rometools/wasm-nodejs": "11.0.0",
-    "lines-and-columns": "2.0.3"
+    "lines-and-columns": "2.0.4"
   },
   "devDependencies": {
     "@fisker/eslint-config": "10.2.6",
