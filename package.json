@@ -75,7 +75,7 @@
     "@fisker/lint-staged-config": "3.1.6",
     "@fisker/markdownlint-cli2-config": "0.0.3",
     "@fisker/prettier-config": "5.0.7",
-    "ava": "5.2.0",
+    "ava": "6.4.1",
     "c8": "7.13.0",
     "esbuild": "0.17.19",
     "eslint": "8.36.0",
